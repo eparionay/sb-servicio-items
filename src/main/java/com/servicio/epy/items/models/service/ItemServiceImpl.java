@@ -1,7 +1,9 @@
 package com.servicio.epy.items.models.service;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,9 +32,14 @@ public class ItemServiceImpl  implements ItemService{
 	}
 
 	@Override
-	public Items findById(Long id) {
+	public Items findById(Long id, Integer cantidad) {
+		Map<String, String> mapParameter = new HashMap<>();
+		mapParameter.put("id", id.toString());
 		
-		return null;
+		Producto prod = clienteRest.getForObject("http://localhost:9001/productos/ver/{id}", 
+				Producto.class, mapParameter);
+		
+		return new Items(prod, cantidad);
 	}
 	
 	

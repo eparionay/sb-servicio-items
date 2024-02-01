@@ -7,6 +7,6 @@ import com.servicio.epy.items.models.Items;
 public interface ItemService {
 	
 	public List<Items> findAll();
-	public Items findById(Long id);
+	public Items findById(Long id, Integer cantidad);
 
 }
